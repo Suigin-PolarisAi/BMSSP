@@ -9,6 +9,7 @@ using Vertex = int;
 using Length = long long;
 const Length INF = std::numeric_limits<long long>::max();
 using Edge = std::pair<Vertex, Length>;
+/** Graph GにおいてVertex uからのedgeはG[u]に格納されている。 */
 using Graph = std::vector<std::vector<Edge>>;
 
 #endif  // COMMON_TYPES_H_

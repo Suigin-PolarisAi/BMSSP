@@ -24,6 +24,7 @@ class ShortestPath {
         /** 論文中のAlgorithm 1 */
         std::pair<std::vector<Vertex>, std::vector<Vertex>> find_pivots(Length B, const std::vector<Vertex>& S);
 
+        /** find_pivotsでのShortest Path Treesを作る際に使用。 */
         std::vector<Vertex> prev_;
         std::vector<int> tree_size_;
         std::vector<std::vector<Vertex>> F_;
