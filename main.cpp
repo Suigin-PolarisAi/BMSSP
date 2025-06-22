@@ -5,6 +5,7 @@
 #include <vector>
 #include <cmath>
 
+// AOJ GRL_1_A (https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_A)を解く。
 int main() {
     int N, M, s;
     std::cin >> N >> M >> s;

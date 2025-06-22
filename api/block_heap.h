@@ -7,12 +7,17 @@
 #include <queue>
 #include <set>
 
+/** Lemma 3.3のデータ構造。頂点の重複を許さない。READMEにあるように、ここでは単なるsetであり、論文中の計算量より劣る。 */
 class BlockHeap {
     public:
         BlockHeap(int M, Length B);
+        /** Nを要素数としたときO(log N) */
         void insert(Vertex v, Length l);
+        /** Nを要素数としたときO(log N) */
         void batch_prepend(const std::vector<std::pair<Vertex, Length>>& L);
+        /** Nを要素数としたときO(log N) */
         std::pair<Length ,std::vector<Vertex>> pull();
+        /** 要素数がゼロかどうか返す。 */
         bool empty();
 
     private:

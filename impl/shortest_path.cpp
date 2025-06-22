@@ -144,27 +144,27 @@ std::pair<Length, std::vector<Vertex>> ShortestPath::base_case(Length B, const s
 
 std::pair<std::vector<Vertex>, std::vector<Vertex>> ShortestPath::find_pivots(Length B, const std::vector<Vertex>& S) {
     std::unordered_set<Vertex> W(S.begin(), S.end());
-    std::vector<Vertex> Wp = S;
+    std::unordered_set<Vertex> Wp(S.begin(), S.end());
 
     for(auto v: W) {
         prev_[v] = -1;
     }
 
     for(int i = 0; i < k_; i++) {
-        std::vector<Vertex> Wi; 
-        for(int j = 0; j < (int)Wp.size(); j++) {
-            Vertex u = Wp[j];
+        std::unordered_set<Vertex> Wi; 
+        for(auto u: Wp) {
             for(int k = 0; k < (int)G_[u].size(); k++) {
                 Vertex v = G_[u][k].first; Length w = G_[u][k].second;
                 if(dhat_[v] >= dhat_[u] + w) {
                     dhat_[v] = dhat_[u] + w;
                     prev_[v] = u;
-                    Wi.push_back(v);
+                    // 論文ではここにdhat_[u] + w < Bのチェックが入るが、恐らく不要。
+                    Wi.insert(v);
                 }
             }
         }
-        for(int k = 0; k < (int)Wi.size(); k++) {
-            W.insert(Wi[k]);
+        for(auto v: Wi) {
+            W.insert(v);
         }
         if((int)W.size() >= k_ * (int)S.size()) {
             return std::make_pair(S, std::vector<Vertex>(W.begin(), W.end()));
